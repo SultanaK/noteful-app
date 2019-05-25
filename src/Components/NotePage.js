@@ -12,7 +12,7 @@ export default class Main extends Component {
         {({ notes }) => {
           return notes
             // filter is not working
-            .filter(p => p.id === this.props.match.params.note_id)
+            .filter(p => p.id === parseInt(this.props.match.params.note_id))
             .map(note => {
               return (
                 <section className="notes-display" key={note.id}>
