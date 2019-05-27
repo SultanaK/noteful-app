@@ -12,10 +12,19 @@ export default class AddNote extends Component {
     titleValid: false,
     contentValid: false,
     titleValidation: '',
-    contentValidation: ''
+    contentValidation: '',
+    success: false,
+    successMessage: ''
   }
 
-  handlePostSubmit = () => {
+  handlePostSubmit = (e) => {
+    e.preventDefault();
+    
+    this.setState({
+      success: true,
+      successMessage: ' Success! Post has been created. '
+    })
+
     this.context.handlePostNote(this.state);
   }
 
@@ -142,6 +151,9 @@ export default class AddNote extends Component {
           <section className="error-box" id="error-box" aria-live="assertive">
             {this.state.titleValidation} 
             {this.state.contentValidation}
+          </section>
+          <section className="success-message" id="success-message" aria-live="assertive">
+            {this.state.successMessage} 
           </section>
         </form>
       </main>

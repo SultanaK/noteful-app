@@ -36,6 +36,28 @@ class App extends Component {
       );
   }
 
+  componentDidUpdate(prevState) {
+    if (this.state.folders !== prevState.folders) {
+      fetch(config.API_ENDPOINT + '/api/folders')
+        .then(response => response.json())
+        .then(responseJson =>
+          this.setState({
+            folders: responseJson
+          })
+        );
+    }
+
+    if (this.state.notes !== prevState.notes) {
+      fetch(config.API_ENDPOINT + '/api/notes')
+        .then(response => response.json())
+        .then(responseJson =>
+          this.setState({
+            notes: responseJson
+          })
+        );
+    }
+  }
+
   handleDeleteFetch = (noteId) => {
     fetch(config.API_ENDPOINT + `/api/notes/${noteId}`, {
       method: 'DELETE'
@@ -60,12 +82,12 @@ class App extends Component {
   handlePostFolder(folderName) {
     fetch(config.API_ENDPOINT + '/api/folders', {
       method: 'POST',
-      body: JSON.stringify({
-        name: folderName
-      }),
       headers: {
         'Content-Type': 'application/json'
       },
+      body: JSON.stringify({
+        name: folderName
+      })
     })
   }
 

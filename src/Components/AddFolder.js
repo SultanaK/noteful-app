@@ -8,10 +8,20 @@ export default class AddFolder extends Component {
   state = {
     folderName: '',
     nameValid: false,
-    validation: ''
+    validation: '',
+    success: false,
+    successMessage: ''
   }
 
-  handlePostSubmit = () => {    
+  handlePostSubmit = (e) => {
+    e.preventDefault();
+    let folderName = this.state.folderName;
+    
+    this.setState({
+      success: true,
+      successMessage: ` Success! Folder '${folderName}' has been created. `
+    });
+
     this.context.handlePostFolder(this.state.folderName);
   }
 
@@ -52,11 +62,6 @@ export default class AddFolder extends Component {
     }
   }
 
-  handlePostSubmit = (event) => {
-    event.preventDefault();
-    this.context.handlePostFolder(this.state.folderName);
-  }
-
   render() {
     return (
       <main className="notes-display">
@@ -82,6 +87,9 @@ export default class AddFolder extends Component {
           </button>
           <section className="error-box" id="error-box" aria-live="assertive">
             {this.state.validation}
+          </section>
+          <section className="success-message" id="success-message" aria-live="assertive">
+            {this.state.successMessage} 
           </section>
         </form>
       </main>

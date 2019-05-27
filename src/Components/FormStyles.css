@@ -65,3 +65,11 @@ form select {
     padding: 20px;
     border-radius: 20px;
 }
+
+.success-message {
+    float: right;
+    color: green;
+    margin-top: -60px;
+    padding: 20px;
+    border-radius: 20px;
+}
