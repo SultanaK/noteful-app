@@ -52,6 +52,11 @@ export default class AddFolder extends Component {
     }
   }
 
+  handlePostSubmit = (event) => {
+    event.preventDefault();
+    this.context.handlePostFolder(this.state.folderName);
+  }
+
   render() {
     return (
       <main className="notes-display">

@@ -19,7 +19,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(config.API_ENDPOINT + `/folders`)
+    fetch(config.API_ENDPOINT + '/api/folders')
       .then(response => response.json())
       .then(responseJson =>
         this.setState({
@@ -27,7 +27,7 @@ class App extends Component {
         })
       );
 
-    fetch(config.API_ENDPOINT + `/notes`)
+    fetch(config.API_ENDPOINT + '/api/notes')
       .then(response => response.json())
       .then(responseJson =>
         this.setState({
@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   handleDeleteFetch = (noteId) => {
-    fetch(config.API_ENDPOINT + `/notes/${noteId}`, {
+    fetch(config.API_ENDPOINT + `/api/notes/${noteId}`, {
       method: 'DELETE'
     })
       .then(response => {
@@ -58,7 +58,7 @@ class App extends Component {
   }
 
   handlePostFolder(folderName) {
-    fetch(config.API_ENDPOINT + `/folders`, {
+    fetch(config.API_ENDPOINT + '/api/folders', {
       method: 'POST',
       body: JSON.stringify({
         name: folderName
@@ -70,7 +70,7 @@ class App extends Component {
   }
 
   handlePostNote({ title, folder_id, content }) {
-    fetch(config.API_ENDPOINT + `/notes`, {
+    fetch(config.API_ENDPOINT + '/api/notes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
