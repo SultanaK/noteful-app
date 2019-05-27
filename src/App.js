@@ -71,7 +71,7 @@ class App extends Component {
     })
   }
 
-  // POST method not working
+  // POST method not working 
   handlePostNote({ title, folder_id, content }) {
     fetch(config.API_ENDPOINT + '/api/notes', {
       method: 'POST',
